@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testapp</title>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+  <!-- <header>
+    <div class="middle-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-4">
+            <span>An eCommerce website</span>
+          </div>
+          <div class="motto col-lg-8">
+              <p>Quality means doing it right when no one is looking.</p>
+              <p>- Henry Ford</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="lower-header">
+      <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" style="">
+              <li><%= link_to 'Home', root_path %></li>
+              <li><%= link_to 'Trending', '#' %></li>
+              <li><%= link_to 'Pickstick', '#' %></li>
+              <li><span class="glyphicon glyphicon-plus" style="float:right;"></span><%= link_to 'Upload', new_picture_path %></li>
+
+              <!-- <li><%= link_to 'Contact', '#' %></li> -->
+            </ul>
+            <!-- Search bar Form -->
+            <%= form_tag(pictures_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Pictures" %>
+            <%= submit_tag "Search" %>
+            <% end %>
+
+            <% if @pictures.present? %>
+            <%= render @pictures %>
+            <% else %>
+            <p>There are no pictures containing the term(s) <%= params[:search] %>.</p>
+            <% end %>
+          </div>
+
+        </div><!-- end nav container -->
+      </nav><!-- navbar ends here -->
+      <!-- devise login notices -->
+      <% if notice %>
+      <p class="notice alert-warning"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+    </div>
+  </header>
+
+  <%= yield %>
+
+  <footer>
+    <ul>
+      <li><%= link_to 'Home', '#' %></li> |
+      <li><%= link_to 'Products', '#' %></li> |
+      <li><%= link_to 'About', '#' %></li> |
+      <li><%= link_to 'FAQ', '#' %></li> |
+      <li><%= link_to 'Contact', '#' %></li>
+    </ul>
+    <!-- <span>© 2016</span> -->
+  </footer>
+</div>
+
+</body>
+</html>
